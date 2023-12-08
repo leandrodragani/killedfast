@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Header } from "@/components/nav";
 import { Toaster } from "@/components/ui/toaster";
 import { Footer } from "@/components/footer";
+import { Analytics } from "@vercel/analytics/react";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -35,6 +36,7 @@ export default function RootLayout({
           {children}
           <Footer />
           <Toaster />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
