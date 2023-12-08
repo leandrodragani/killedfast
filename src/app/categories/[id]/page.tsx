@@ -4,6 +4,7 @@ import prisma from "@/lib/prisma";
 
 import { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "KilledFast | Showcase your failed products",
@@ -11,7 +12,21 @@ export const metadata: Metadata = {
     "A community to learn from every failure or perhaps revive your product. Everybody fails. You are not alone.",
 };
 
-export default async function HomePage() {
+export default async function CategoryPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const category = await prisma.category.findFirst({
+    where: {
+      slug: params.id,
+    },
+  });
+
+  if (!category?.id) {
+    notFound();
+  }
+
   const products = await prisma.product.findMany({
     include: {
       category: true,
@@ -22,6 +37,11 @@ export default async function HomePage() {
       },
       comments: true,
       author: true,
+    },
+    where: {
+      category: {
+        slug: params.id,
+      },
     },
     orderBy: [
       {
@@ -35,23 +55,14 @@ export default async function HomePage() {
       <div className="container">
         <section className="flex max-w-[980px] flex-col items-start gap-2 pt-8 md:pt-12 page-header pb-8">
           <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1] hidden md:block">
-            Showcase your failed products
+            {category.name}
           </h1>
           <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl lg:leading-[1.1] md:hidden">
-            Home of failed products
+            {category.name}
           </h1>
           <span className="max-w-[750px] text-lg text-muted-foreground sm:text-xl">
-            A community to learn from every failure or perhaps revive your
-            product. Everybody fails. You are not alone.
+            {category.description}
           </span>
-          <section className="flex w-full items-center space-x-4 pb-8 pt-4 md:pb-10">
-            <Button asChild size="sm">
-              <Link href="/submit-product">Submit your product</Link>
-            </Button>
-            <Button size="sm" variant="outline">
-              Subscribe
-            </Button>
-          </section>
         </section>
         <ProductsList products={products ?? []} />
       </div>
