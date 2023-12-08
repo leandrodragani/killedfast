@@ -11,13 +11,9 @@ import { Search } from "./search";
 import Image from "next/image";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
-const navigation = [
-  { name: "Categories", href: "/categories" },
-  { name: "Newsletter", href: "/#newsletter" },
-  { name: "Advertise", href: "/#advertise" },
-];
+const navigation = [{ name: "Categories", href: "/categories" }];
 
-function Header() {
+export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -138,5 +134,3 @@ function Header() {
     </header>
   );
 }
-
-export { Header };

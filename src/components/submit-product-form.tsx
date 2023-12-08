@@ -627,7 +627,7 @@ export function SubmitProductForm({
           <div>
             <h3 className="text-lg font-medium">The fall of your product</h3>
             <p className="text-sm text-muted-foreground">
-              Tell us about the fall of your product.
+              Try to write as much as you can for each question.
             </p>
           </div>
           <Separator />
@@ -662,7 +662,11 @@ export function SubmitProductForm({
               <FormItem>
                 <FormLabel>Key challenges faced</FormLabel>
                 <FormControl>
-                  <Textarea className="resize-none" {...field} />
+                  <Textarea
+                    className="resize-none"
+                    placeholder="Market competition, lack of funding"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>
                   {keyChallenges.length}/{maxLength.keyChallenges}
@@ -677,7 +681,8 @@ export function SubmitProductForm({
           <div>
             <h3 className="text-lg font-medium">Learnings and Insights</h3>
             <p className="text-sm text-muted-foreground">
-              Share your learnings and insights with the community.
+              Share your learnings and insights with the community. Try to write
+              as much as you can for each question.
             </p>
           </div>
           <Separator />
@@ -689,7 +694,11 @@ export function SubmitProductForm({
               <FormItem>
                 <FormLabel>What were the major lessons learned?</FormLabel>
                 <FormControl>
-                  <Textarea className="resize-none" {...field} />
+                  <Textarea
+                    className="resize-none"
+                    placeholder="Importance of market research, focus on marketing"
+                    {...field}
+                  />
                 </FormControl>
                 <FormDescription>
                   {lessonsLearned.length}/{maxLength.lessonsLearned}

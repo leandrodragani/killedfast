@@ -4,21 +4,7 @@ import { badgeVariants } from "./ui/badge";
 import { Prisma } from "@prisma/client";
 import Image from "next/image";
 import { ProductWithRelations } from "@/lib/types";
-import { kebabCase } from "lodash";
 import { Button } from "./ui/button";
-
-const productType = Prisma.validator<Prisma.ProductDefaultArgs>()({
-  include: {
-    category: true,
-    tags: {
-      include: {
-        tag: true,
-      },
-    },
-    author: true,
-    comments: true,
-  },
-});
 
 export function ProductsList({
   products,
@@ -44,7 +30,7 @@ export function ProductsList({
   }
 
   return (
-    <ul role="list" className="divide-y">
+    <ul role="list" className="divide-y pb-10">
       {products.map((product) => (
         <li
           key={product.id}
@@ -69,7 +55,7 @@ export function ProductsList({
               </p>
               <div className="mt-2 flex items-center gap-x-2 leading-5 text-muted-foreground text-sm">
                 <p>
-                  <Link href={product?.author.id} className="hover:underline">
+                  <Link href="#" className="hover:underline">
                     {product.author?.name}
                   </Link>
                 </p>
@@ -84,7 +70,7 @@ export function ProductsList({
                         variant: "outline",
                         className: "inline",
                       })}
-                      href={`/tags/${kebabCase(tag.tag.name)}`}
+                      href={`/tags/${tag.tag.slug}`}
                     >
                       {tag.tag.name}
                     </Link>

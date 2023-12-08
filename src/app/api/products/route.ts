@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs";
 import { SubmitProductFormValues } from "@/components/submit-product-form";
 import { kebabCase } from "lodash";
 import { ProductStatus } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 
 export async function POST(request: Request) {
   try {
@@ -69,6 +70,8 @@ export async function POST(request: Request) {
         },
       },
     });
+
+    revalidatePath("/");
 
     return new NextResponse(JSON.stringify(product), {
       status: 201,

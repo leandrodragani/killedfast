@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import prisma from "@/lib/prisma";
-import kebabCase from "lodash/kebabCase";
 
 import { Metadata } from "next";
 import Link from "next/link";
@@ -48,7 +47,9 @@ export default async function CategoriesPage() {
                 <CardDescription>{category.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p>{category.products.length} products</p>
+                {category.products.length ? (
+                  <p>{category.products.length} products</p>
+                ) : null}
               </CardContent>
               <CardFooter className="flex justify-end">
                 <Button variant="outline" size="sm" asChild>

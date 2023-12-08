@@ -233,6 +233,11 @@ const tags = [
   "Defi",
   "NFT creation tools",
   "NFT marketplaces",
+  "Mobile apps",
+  "Hardware",
+  "Home and Kitchen",
+  "Lifestyle",
+  "Music",
 ];
 
 async function main() {

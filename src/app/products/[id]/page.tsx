@@ -1,8 +1,7 @@
-import { ProductsList } from "@/components/products-list";
-import { Badge, badgeVariants } from "@/components/ui/badge";
+import { badgeVariants } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import prisma from "@/lib/prisma";
-import { cn, mapStatusToLabel } from "@/lib/utils";
+import { mapStatusToLabel } from "@/lib/utils";
 import { ArrowLeftIcon, ChatBubbleIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import {
@@ -165,12 +164,12 @@ export default async function ProductsPage({
                     </h2>
                     <p className="mt-2 text-sm text-muted-foreground">
                       Published by{" "}
-                      <a
+                      <Link
                         href="#"
                         className="font-medium text-primary-foreground"
                       >
                         {product.author.name}
-                      </a>{" "}
+                      </Link>{" "}
                       in{" "}
                       <Link
                         href={`/categories/${product.category.slug}`}
@@ -184,7 +183,7 @@ export default async function ProductsPage({
                   <div className="mt-4 flex space-x-3 md:mt-0">
                     {product.website ? (
                       <Button asChild>
-                        <a href={product.website}>
+                        <a href={product.website} target="_blank">
                           <Link2Icon
                             className="-ml-0.5 mr-2 h-5 w-5 text-muted-foreground"
                             aria-hidden="true"

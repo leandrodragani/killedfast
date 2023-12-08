@@ -5,6 +5,7 @@ import { dark, shadesOfPurple } from "@clerk/themes";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/nav";
 import { Toaster } from "@/components/ui/toaster";
+import { Footer } from "@/components/footer";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -26,12 +27,13 @@ export default function RootLayout({
       <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "min-h-screen bg-background font-sans antialiased",
+            "min-h-screen bg-background font-sans antialiased flex flex-col",
             fontSans.variable
           )}
         >
           <Header />
           {children}
+          <Footer />
           <Toaster />
         </body>
       </html>
