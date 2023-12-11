@@ -72,8 +72,8 @@ const submitProductFormSchema = z.object({
     }),
   description: z
     .string()
-    .min(10, {
-      message: "Description must be at least 10 characters.",
+    .min(60, {
+      message: "Description must be at least 60 characters.",
     })
     .max(maxLength.description, {
       message: `Description must not be longer than ${maxLength.description} characters.`,
@@ -82,7 +82,9 @@ const submitProductFormSchema = z.object({
   tags: z.array(z.object({ value: z.string() })).optional(),
   lessonsLearned: z
     .string()
-    .min(10)
+    .min(200, {
+      message: "Lessons learned must be at least 200 characters.",
+    })
     .max(maxLength.lessonsLearned, {
       message: `Lessons learned must not be longer than ${maxLength.lessonsLearned} characters.`,
     }),
@@ -107,20 +109,22 @@ const submitProductFormSchema = z.object({
     .optional(),
   reasonForFailure: z
     .string()
-    .min(1, { message: "Reason is required." })
+    .min(200, {
+      message: "Reason for failure must be at least 200 characters.",
+    })
     .max(maxLength.reasonForFailure, {
       message: `Reason must not be longer than ${maxLength.reasonForFailure} characters.`,
     }),
   keyChallenges: z
     .string()
-    .min(1, { message: "Key challenges are required." })
+    .min(200, { message: "Key challenges must be at least 200 characters." })
     .max(maxLength.keyChallenges, {
       message: `Key challenges must not be longer than ${maxLength.keyChallenges} characters.`,
     }),
   whatWouldYouDoDifferently: z.string().optional(),
   tipsOrAdvice: z
     .string()
-    .min(1, { message: "Tips or advice are required." })
+    .min(200, { message: "Tips or advice must be at least 200 characters." })
     .max(maxLength.tipsOrAdvice, {
       message: `Tips or advice must not be longer than ${maxLength.tipsOrAdvice} characters.`,
     }),
