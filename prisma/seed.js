@@ -241,6 +241,10 @@ const tags = [
 ];
 
 async function main() {
+  await prisma.resourceURL.deleteMany({});
+  await prisma.comment.deleteMany({});
+  await prisma.productTag.deleteMany({});
+  await prisma.product.deleteMany({});
   await prisma.category.deleteMany({});
   await prisma.tag.deleteMany({});
   console.log("Categories and Tags deleted successfully");
@@ -250,6 +254,15 @@ async function main() {
 
   await prisma.$queryRaw`ALTER TABLE Category AUTO_INCREMENT = 1`;
   console.log("reset Category table auto increment to 1");
+
+  await prisma.$queryRaw`ALTER TABLE Comment AUTO_INCREMENT = 1`;
+  console.log("reset Comment table auto increment to 1");
+
+  await prisma.$queryRaw`ALTER TABLE ResourceURL AUTO_INCREMENT = 1`;
+  console.log("reset ResourceURL table auto increment to 1");
+
+  await prisma.$queryRaw`ALTER TABLE Product AUTO_INCREMENT = 1`;
+  console.log("reset Product table auto increment to 1");
 
   await prisma.category.createMany({
     data: categoryData,
