@@ -61,7 +61,7 @@ const submitProductFormSchema = z.object({
     .max(maxLength.name, {
       message: `Name must not be longer than ${maxLength.name} characters.`,
     }),
-  website: z.string().url().optional(),
+  website: z.string().url().optional().or(z.literal("")),
   slogan: z
     .string()
     .min(1, {
