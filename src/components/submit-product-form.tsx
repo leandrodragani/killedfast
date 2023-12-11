@@ -642,7 +642,7 @@ export function SubmitProductForm({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  What do YOU think was the main reason for the failure?
+                  What do you think was the main reason for the failure?
                 </FormLabel>
                 <FormControl>
                   <Textarea

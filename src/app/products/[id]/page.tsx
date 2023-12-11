@@ -19,6 +19,7 @@ import React, { Fragment } from "react";
 import Image from "next/image";
 import { CommentForm } from "./comment-form";
 import { CommentWithAuthor } from "@/lib/types";
+import { auth } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   title: "KilledFast | Showcase your failed products",
@@ -80,6 +81,7 @@ export default async function ProductsPage({
 }: {
   params: { id: string };
 }) {
+  const { userId } = auth();
   const product = await prisma.product.findFirst({
     where: {
       slug: params.id,
@@ -298,7 +300,23 @@ export default async function ProductsPage({
                 </h2>
               </div>
               <div className="pt-6">
-                <CommentForm productId={product.id} />
+                {!userId ? (
+                  <div className="text-center border p-8 rounded-lg">
+                    <p className="text-center">
+                      You must be logged in to comment.
+                    </p>
+                    <Button
+                      variant="outline"
+                      className="mt-4"
+                      size="sm"
+                      asChild
+                    >
+                      <Link href={`/login`}>Login</Link>
+                    </Button>
+                  </div>
+                ) : (
+                  <CommentForm productId={product.id} />
+                )}
                 <div className="divide-y space-y-6 mt-10">
                   {product.comments.map((comment) => (
                     <Comment key={comment.id} comment={comment} />

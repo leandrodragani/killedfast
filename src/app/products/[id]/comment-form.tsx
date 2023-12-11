@@ -16,6 +16,8 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import { Loader2 } from "lucide-react";
+import { auth, useUser } from "@clerk/nextjs";
+import Link from "next/link";
 
 const commentFormSchema = z.object({
   commentText: z
