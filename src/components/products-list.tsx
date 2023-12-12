@@ -53,17 +53,20 @@ export function ProductsList({
                   {product.name} — {product.slogan}
                 </Link>
               </p>
-              <div className="mt-2 flex items-center gap-x-2 leading-5 text-muted-foreground text-sm">
+              <div className="mt-2 flex sm:items-center gap-x-2 leading-5 text-muted-foreground text-sm flex-col sm:flex-row">
                 <p>
-                  <Link href="#" className="hover:underline">
+                  <Link href="#" className="hover:underline whitespace-nowrap">
                     {product.author?.name}
                   </Link>
                 </p>
-                <svg viewBox="0 0 2 2" className="h-0.5 w-0.5 fill-current">
+                <svg
+                  viewBox="0 0 2 2"
+                  className="h-0.5 w-0.5 fill-current hidden sm:block"
+                >
                   <circle cx={1} cy={1} r={1} />
                 </svg>
-                <div className="flex space-x-2">
-                  {product.tags?.map((tag) => (
+                <div className="flex space-x-2 whitespace-nowrap mt-4 sm:mt-0">
+                  {product.tags?.slice(0, 3).map((tag) => (
                     <Link
                       key={tag.tagId}
                       className={badgeVariants({
@@ -81,7 +84,7 @@ export function ProductsList({
           </div>
           <dl className="flex w-full flex-none justify-between gap-x-8 sm:w-auto">
             <div className="flex gap-x-2.5 items-center">
-              {product.comments.length > 0 ? (
+              {product.comments.length === 0 ? (
                 <>
                   <dt>
                     <span className="sr-only">Total comments</span>
