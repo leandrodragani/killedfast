@@ -259,7 +259,7 @@ export default async function ProductsPage({
                 </aside>
                 <div className="py-3 lg:pb-0 lg:pt-6">
                   <h2 className="sr-only">Description</h2>
-                  <div className="prose max-w-none prose-red prose-invert text-muted-foreground">
+                  <div className="prose max-w-none prose-red prose-invert text-muted-foreground break-words">
                     <h3>What does your product do or did?</h3>
                     <p>{product.description}</p>
                     <h3>What do you think went wrong with it?</h3>
