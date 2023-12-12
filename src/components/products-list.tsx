@@ -84,7 +84,7 @@ export function ProductsList({
           </div>
           <dl className="flex w-full flex-none justify-between gap-x-8 sm:w-auto">
             <div className="flex gap-x-2.5 items-center">
-              {product.comments.length === 0 ? (
+              {product.comments.length > 0 ? (
                 <>
                   <dt>
                     <span className="sr-only">Total comments</span>
